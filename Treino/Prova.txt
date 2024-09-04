@@ -1,0 +1,270 @@
+1) Identifique e explique o(s) erro(s) na classe a seguir:
+ public class Ponto2D {
+    private double x , y ;
+
+    public Ponto2D ( double pX , double pY ){
+        x = pX ; y = pY ;
+    }
+
+    public Ponto2D ( double coord1 , double coord2 ){
+        x = coord1 ; y = coord2 ;
+    }
+}
+
+R: A assinatura dos dois construtores são iguais, ambos tem o mesmo nome e recebem duas variáveis do tipo "double", isso gera um erro de compilação.
+
+
+2)Observe a declaração de atributo a seguir:
+private LinkedList avioes ;
+
+Escreva um método getter e um método setter para esse atributo.
+
+R:
+public void setAvioes (LinkedList avioes){
+    this.avioes = avioes;
+}
+
+public LinkedList getAvioes(){
+    return avioes;
+}
+
+
+3)As Organizações Não Governamentais do Paraná podem submeter ao governo notas fiscais para as quais não foram cadastrados os números de CPF dos consumidores.
+ Dessa forma, o reembolso que seria encaminhado ao consumidor pode ser encaminhado à ONG. Uma empresa deseja fazer um programa para que sejam cadastradas
+ONGs e suas respectivas notas fiscais. Para cada ONG, serão cadastrados seu nome, CNPJ e suas notas fiscais. Para cada nota fiscal, serão cadastrados a data e o
+valor. Para cada nota fiscal, devemos ter a possibilidade de apontar se ela já foi submetida para o governo ou não. Escreva os códigos da(s) classe(s) para imple-
+mentação desse sistema. Obs 1.: não precisa fazer a classe principal com o método public static void main (String args[]). Obs 2.: os atributos podem ser públicos.
+
+R:
+import java.util.LinkedListList;
+
+public class ONG{
+    public String nome, cnpj;
+    public LinkedList <NotaFiscal> notasFiscais;
+}
+
+public class NotaFiscal{
+    public int dia, mes, ano;
+    public float valor;
+    public boolean foiSubmetida;
+}
+
+
+4)O objetivo desse exercício é fazer uma classe que modele o controle de patrimônios da UEL para o qual você está desenvolvendo um sistema em Java. As seguintes
+informações do patrimônio são cadastradas: nome e valor. Toda vez que um novo patrimônio é cadastrado (criação de novo objeto referente a patrimônio), um novo
+número de patrimônio é gerado e atribuído a esse novo patrimônio. O número do patrimônio deve ser incrementado a cada vez que um novo patrimônio é cadastrado.
+Atenção! Neste exercício, é necessário construir apenas a classe para o patrimônio. Dica: o conceito de membro de classe deve ser utilizado para resolver este exercício.
+
+R:
+public class Patrimonio{
+    public String nome;
+    public float valor;
+    public int numPatrimonio;
+    static int controlePatrimonio = 0;
+
+    public Patrimonio(){
+        this.numPatrimonio = Patrimonio.controlePatrimonio;
+        Patrimonio.controlePatrimonio++;
+    }
+}
+
+
+5)Analise as duas classes apresentadas a seguir e escreva qual seria a saída para esse programa.
+import java.util.LinkedList;
+public class Principal{
+    public static void main ( String [] args ){
+        LinkedList <Alerta> alertas = new LinkedList <Alerta>();
+
+        Alerta alerta = new Alerta();
+
+        for(int i = 0; i < 3; i++){
+            alerta.mensagem = "escaneamento da porta: "+(i*1000);
+            alerta.identificador = i;
+            alertas.add(alerta);
+        }
+
+        for(int j = 0; j < 3; j++){
+            System.out.println("Identificador do alerta :" + alertas.get(j).identificador);
+            System.out.println("Mensagem do alerta : "+ alertas.get(j).mensagem);
+        }
+    }
+}
+public class Alerta {
+    public String mensagem;
+    public int identificador;
+}
+
+R:
+Identificador do alerta: 2
+Mensagem do alerta: escaneamento da porta: 2000
+Identificador do alerta: 2
+Mensagem do alerta: escaneamento da porta: 2000
+Identificador do alerta: 2
+Mensagem do alerta: escaneamento da porta: 2000
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+PROVA 2
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+1)
+Observe o código fonte das classes App e NotaFiscal apresentadas a seguir (2,0 pontos):
+
+import java . text . NumberFormat ;
+public class NotaFiscal {
+    public double valor ;
+    public String cnpj ;
+    public String status ;
+    public String toString () {
+        NumberFormat moeda = NumberFormat . getCurrencyInstance ();
+        return "Valor : "+ moeda . format ( this . valor )+"\n"+ " CNPJ : "+ this . cnpj +"\n"+ " Status : "+ this . status ;
+    }
+}
+
+import java . util . ArrayList ;
+import java . util . Scanner ;
+public class App {
+    public static void main ( String [] args ) {
+        Scanner sc = new Scanner ( System . in );
+        int opcao = 0;
+        ArrayList < NotaFiscal > notasPendentes = new ArrayList < NotaFiscal >();
+        ArrayList < NotaFiscal > notasProcessadas = new ArrayList < NotaFiscal >();
+        NotaFiscal nf = new NotaFiscal ();
+
+        do {
+            System . out . println (" Digite a sua opcao ");
+            System . out . println ("1 - Cadastrar nota pendente ");
+            System . out . println ("2 - Cadastrar nota processada ");
+            System . out . println ("3 - Imprimir notas ");
+
+            opcao = sc . nextInt ();
+            switch ( opcao ) {
+
+            case 1:
+                System . out . println (" valor da nota ");
+                double valor = sc . nextDouble ();
+                System . out . println (" CNPJ ");
+                String cnpj = sc . next ();
+                nf . valor = valor ;
+                nf . cnpj = cnpj ;
+                nf . status = " pendente ";
+                notasPendentes . add ( nf );
+                break ;
+
+            case 2:
+                System . out . println (" valor da nota ");
+                valor = sc . nextDouble ();
+                System . out . println (" CNPJ ");
+                cnpj = sc . next ();
+                nf = new NotaFiscal ();
+                nf . valor = valor ;
+                nf . cnpj = cnpj ;
+                nf . status = " processada ";
+                notasProcessadas . add ( nf );
+                break ;
+
+            case 3:
+                for ( NotaFiscal nota : notasPendentes ) {
+                    System . out . println ( nota );
+                }
+                for ( NotaFiscal nota : notasProcessadas ) {
+                    System . out . println ( nota );
+                }
+                break ;
+            }
+        } while ( opcao != 4);
+    }
+}
+
+O usuário executou esse código e inseriu as seguintes notas fiscais exatamente nessa ordem:
+• Opção 2 (inserir nota fiscal processada), Valor: 100, CNPJ: 111;
+• Opção 2 (inserir nota fiscal processada), Valor: 200, CNPJ: 222;
+• Opção 1 (inserir nota fiscal pendente), Valor: 300, CNPJ: 333;
+• Opção 1 (inserir nota fiscal pendente), Valor: 400, CNPJ: 444.
+Após inserir essas notas fiscais, o usuário pediu a impressão por meio da opção 3 do programa e obteve a seguinte saída:
+
+Valor: R$ 400,00
+CNPJ: 444
+Status: pendente
+
+Valor: R$ 400,00
+CNPJ: 444
+Status: pendente
+
+Valor: R$ 100,00
+CNPJ: 111
+Status: processada
+
+Valor: R$ 400,00
+CNPJ: 444
+Status: pendente
+
+Corrija o código fonte para que ele imprima a saída correta, ou seja:
+
+Valor: R$ 300,00
+CNPJ: 333
+Status: pendente
+
+Valor: R$ 400,00
+CNPJ: 444
+Status: pendente
+
+Valor: R$ 100,00
+CNPJ: 111
+Status: processada
+
+Valor: R$ 200,00
+CNPJ: 222
+Status: processada
+
+R:No case 1 não tem a criação no objeto, ou seja, seria só colocar uma linha ali escrita "nf = new NotaFiscal();
+
+
+2)Com relação aos membros de classe, responda as seguintes questões (2,0 pontos):
+
+a) O método public static void main (String args[]) é o ponto de partida dos aplicativos Java. Por que esse método deve ser um membro de classe?
+
+b) Observe o código a seguir e explique por que o atributo int a não pode ser invocado dessa forma dentro do método int processA() (Atenção! Não basta
+dizer que a razão é o método ser um membro de classe. A explicação deve ser mais completa):
+
+public class A {
+    public int a;
+    public static int processA(){
+        return 10 * this.a;
+    }
+}
+
+R:
+a)Porque um membro de classe não exige a criação de um objeto para que ele seja invocado. Como a JVM não cria objetos, é conveniente que o método main seja estatico
+para que ele possa ser invocado normalmente sem a necessidade de criar um obejeto.
+
+b)Não pode porque o método "processA" pode ser chamado sem a criação de um objeto, porém, o "this.a" pertence à um objeto obrigatoriamente e isso gera um conflito,
+já que o método pode ser chamado sem a criação de um objeto porém uma instrução nele precisa de um objeto.
+
+
+3)Os wrappers são classes que “embrulham” tipos primitivos no Java (ex.: Integer e int). Explique porque os wrappers foram criados e apresente um exemplo que mostre
+a sua necessidade (2,0 pontos).
+
+R: Eles foram criados para situações como quando não é possível usar um tipo primitivo, sendo necessário apontar uma classe. Um exemplo é quando declaramos uma
+LinkedList, não podemos fazer "LinkedList <int>", mas sim "LinkedList <Integer>".
+
+
+4)Escreva o código Java para o diagrama de classes apresentado a seguir (2,0 pontos).
+
+R: 
+public class Carro{
+    private String renavam;
+    public int ano;
+    public String placa;
+    public Motor motor;
+    public Roda rodas[] = new Roda[5];
+}
+
+public class Motor{
+    public float capacidade;
+    private String nroMotor;
+    public int nroCilindros;
+}
+
+public class Roda{
+    public float diametro;
+}
