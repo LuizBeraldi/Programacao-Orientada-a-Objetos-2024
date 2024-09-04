@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Ex1 - Estrela/Ex1 - Estrela.iml" filepath="$PROJECT_DIR$/Ex1 - Estrela/Ex1 - Estrela.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex2 - Funcionario/Ex2 - Funcionario.iml" filepath="$PROJECT_DIR$/Ex2 - Funcionario/Ex2 - Funcionario.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex3 - Livros/Ex3 - Livros.iml" filepath="$PROJECT_DIR$/Ex3 - Livros/Ex3 - Livros.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex4 - Carro/Ex4 - Carro.iml" filepath="$PROJECT_DIR$/Ex4 - Carro/Ex4 - Carro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex5 - Array/Ex5 - Array.iml" filepath="$PROJECT_DIR$/Ex5 - Array/Ex5 - Array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ex6 - BombaCombustivel/Ex6 - BombaCombustivel.iml" filepath="$PROJECT_DIR$/Ex6 - BombaCombustivel/Ex6 - BombaCombustivel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Exerc em sala.iml" filepath="$PROJECT_DIR$/.idea/Exerc em sala.iml" />
+    </modules>
+  </component>
+</project>
