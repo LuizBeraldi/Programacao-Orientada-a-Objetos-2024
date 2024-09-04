@@ -1,0 +1,3 @@
+interface Manutencao {
+    void realizarManutencao();
+}
